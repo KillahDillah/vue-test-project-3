@@ -56,11 +56,18 @@ export default {
   data: initialData,
   methods: {
     onFormSave (product) {
-      // Generate an id using the third-party lib 'uuid'
-      product.id = uuid.v4()
-      // add it to the product list
-      this.products.push(product)
-      // reset the form
+      const index = this.products.findIndex((p) => p.id === product.id)
+
+      // update product if it exists or create it if it doesn't
+      if (index !== -1) {
+        // We need to replace the array entirely so that vue can recognize
+        // the change and re-render entirely.
+        // See http://vuejs.org/guide/list.html#Caveats
+        this.products.splice(index, 1, product)
+      } else {
+        product.id = uuid.v4()
+        this.products.push(product)
+      }
       this.resetProductInForm()
     },
     resetProductInForm () {
