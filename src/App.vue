@@ -1,23 +1,19 @@
+<!-- src/App.vue -->
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
-  </div>
+  <!-- when using a component in a template Vue.js expects the DOM element to be
+  lowercased and dasherized. e.g. ProductList -> product-list -->
+
+  <product-list></product-list>
 </template>
 
 <script>
+import ProductList from './components/ProductList'
+
 export default {
-  name: 'App'
+  components: {
+    // With ES6 we can use the Object Literal Shorthand Syntax to save us some
+    // keystrokes
+    ProductList
+  }
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
