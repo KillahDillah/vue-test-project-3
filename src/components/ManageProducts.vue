@@ -6,7 +6,8 @@
       v-on:submit="onFormSave"
     ></save-product-form>
     <product-list
-      :products="products">
+      :products="products"
+      v-on:edit="onEditClicked">
     </product-list>
   </section>
 </template>
@@ -64,6 +65,12 @@ export default {
     },
     resetProductInForm () {
       this.productInForm = initialData().productInForm
+    },
+    onEditClicked (product) {
+      // since objects are passed by reference we need to clone the product
+      // either by using Object.assign({}, product) or by using object
+      // spread like we do here.
+      this.productInForm = { ...product }
     }
   }
 }
