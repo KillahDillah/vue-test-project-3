@@ -1,15 +1,26 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import App from './App'
 
-Vue.use(Router)
+import VueRouter from 'vue-router'
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    }
-  ]
+import ProductCatalog from './components/ProductCatalog'
+import ManageProducts from './components/ManageProducts'
+
+Vue.use(VueRouter)
+
+const routes = [
+  { path: '/home', alias: '/', component: ProductCatalog },
+  { path: '/manage-products', component: ManageProducts }
+]
+
+// Create the router instance and pass the `routes` option
+const router = new VueRouter({
+  routes
+})
+
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  router,
+  render: h => h(App)
 })
