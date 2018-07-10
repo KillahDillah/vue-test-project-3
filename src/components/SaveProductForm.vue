@@ -25,18 +25,22 @@ export default {
   props: ['product'], 
   data() {
     return {
-      formErrors: {}
+      formErrors: {},
+      selectedFile: undefined,
+      // selectedFileName: ''
     }
   },
   watch: {
     'product.id' () {
-      this.formErrors = {}
+      this.formErrors = {},
+      this.selectedFile = undefined
+      // this.selectedFileName = this.product
     }
   },
   methods: {
     onSubmit () {
       if (this.validate()) {
-        this.$emit('submit', this.product)
+        this.$emit('submit', this.product, this.selectedFile)
       }
     },
     cancel () {
