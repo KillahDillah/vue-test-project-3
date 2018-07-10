@@ -13,21 +13,22 @@
       <label for="price">Price</label>
       <input type="number" v-model="product.price" class="form-control" id="price" placeholder="Enter Price" number>
     </div>
-    <button type="submit" v-on:click.prevent="onSubmit" class="btn btn-primary">Save product</button>
-    <button v-show="onEditClicked" v-on:click.prevent="cancel" class="btn btn-primary">Cancel</button>
+    <button type="submit" v-on:click.prevent="onSubmit" v-if="this.product.id" class="btn btn-primary">Edit product</button>
+    <button type="submit" v-on:click.prevent="onSubmit" v-else class="btn btn-primary">Add product</button>
+    <button v-if="this.product.id" v-on:click.prevent="cancel" class="btn btn-primary">Cancel</button>
   </form>
 </template>
 
 <script>
 
 export default {
-  props: ['product'],
+  props: ['product'], 
   methods: {
     onSubmit () {
       this.$emit('submit', this.product)
     },
     cancel () {
-        this.$emit('cancel', this.product)
+      this.$emit('cancel')
     }
   }
 }

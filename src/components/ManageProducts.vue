@@ -70,7 +70,7 @@ export default {
         this.products.splice(index, 1, product)
       } else {
         product.id = uuid.v4()
-        // .v4 is the version of uuid being called upon 
+        // .v4 is the version of uuid being called upon
         this.products.push(product)
       }
       this.resetProductInForm()
@@ -85,7 +85,7 @@ export default {
       this.productInForm = { ...product }
     },
     onCancel (product) {
-        this.resetProductInForm()
+      this.resetProductInForm()
     }
   }
 }
