@@ -1,10 +1,10 @@
 import Vue from 'vue'
-import App from './App'
+import App from '../App'
 
 import VueRouter from 'vue-router'
 
-import ProductCatalog from './components/ProductCatalog'
-import ManageProducts from './components/ManageProducts'
+import ProductCatalog from '../components/ProductCatalog'
+import ManageProducts from '../components/ManageProducts'
 
 Vue.use(VueRouter)
 
