@@ -4,6 +4,7 @@
     <save-product-form
       :product="productInForm"
       v-on:submit="onFormSave"
+      v-on:cancel="onCancel"
     ></save-product-form>
     <product-list
       :products="products"
@@ -62,10 +63,14 @@ export default {
       if (index !== -1) {
         // We need to replace the array entirely so that vue can recognize
         // the change and re-render entirely.
+
+        // -1 is a falsey value - which means if index is at -1 then the object does not exist. If index = 1, means that the index does exist
+
         // See http://vuejs.org/guide/list.html#Caveats
         this.products.splice(index, 1, product)
       } else {
         product.id = uuid.v4()
+        // .v4 is the version of uuid being called upon 
         this.products.push(product)
       }
       this.resetProductInForm()
@@ -78,6 +83,9 @@ export default {
       // either by using Object.assign({}, product) or by using object
       // spread like we do here.
       this.productInForm = { ...product }
+    },
+    onCancel (product) {
+        this.resetProductInForm()
     }
   }
 }
